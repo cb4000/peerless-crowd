@@ -6,6 +6,12 @@ services:
       - '8080:8080'
   redis:
     image: redis
+    ports:
+      - '6379:6379'
+  redisearch:
+    image: redislabs/redisearch
+    ports:
+      - '6380:6379'
   delexis:
     volumes:
       - $HOME/.aws:/root/.aws
@@ -22,3 +28,35 @@ services:
     build: ../../node-lexical-island/.
     ports:
       - '8081:8082'
+  pink-percival:
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      - ENVIRONMENT_TYPE=dockerCompose
+      - POSTGRES_USERNAME
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_HOST
+      - AWS_REGION
+      - AWS_PROFILE
+      - AWS_BUCKET
+      - JWT_SECRET
+    build: ../../pink-percival/.
+    ports:
+      - '8083:3000'
+  reflexive-persistance:
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      - ENVIRONMENT_TYPE=dockerCompose
+      - POSTGRES_USERNAME
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_HOST
+      - AWS_REGION
+      - AWS_PROFILE
+      - AWS_BUCKET
+      - JWT_SECRET
+    build: ../../reflexive-persistance/.
+    ports:
+      - '8084:3000'
