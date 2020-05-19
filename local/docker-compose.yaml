@@ -44,6 +44,9 @@ services:
     build: ./pink-percival/.
     ports:
       - '8083:3000'
+    depends_on:
+      - redisearch
+      - redis
   reflexive-persistance:
     volumes:
       - $HOME/.aws:/root/.aws
