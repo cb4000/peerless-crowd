@@ -1,9 +1,9 @@
 version: '3'
 services:
-  cliff:
-    image: clblount9/cliff-clavin
-    ports:
-      - '8080:8080'
+  #cliff:
+  #  image: clblount9/cliff-clavin
+  #  ports:
+  #    - '8080:8080'
   redis:
     image: redis
     ports:
@@ -25,7 +25,7 @@ services:
       - AWS_PROFILE
       - AWS_BUCKET
       - JWT_SECRET
-    build: ../../node-lexical-island/.
+    build: ./node-lexical-island/.
     ports:
       - '8081:8082'
   pink-percival:
@@ -41,7 +41,7 @@ services:
       - AWS_PROFILE
       - AWS_BUCKET
       - JWT_SECRET
-    build: ../../pink-percival/.
+    build: ./pink-percival/.
     ports:
       - '8083:3000'
   reflexive-persistance:
@@ -57,6 +57,22 @@ services:
       - AWS_PROFILE
       - AWS_BUCKET
       - JWT_SECRET
-    build: ../../reflexive-persistance/.
+    build: ./reflexive-persistance/.
     ports:
       - '8084:3000'
+  kinetic-ambassador:
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      - ENVIRONMENT_TYPE=dockerCompose
+      - POSTGRES_USERNAME
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_HOST
+      - AWS_REGION
+      - AWS_PROFILE
+      - AWS_BUCKET
+      - JWT_SECRET
+    build: ./kinesis-bi-ambassador/.
+    ports:
+      - '80:8080'
