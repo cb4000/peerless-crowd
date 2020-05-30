@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: node-lexical-island-service
+  name: node-lexical-island
+spec:
+  selector:
+    matchLabels:
+      app: node-lexical-island
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: node-lexical-island
+    spec:
+      containers:
+      - image: clblount9/node-lexical-island
+        name: node-lexical-island
+        imagePullPolicy: Always          
+        ports:
+        - containerPort: 8082
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"                
+      restartPolicy: Always

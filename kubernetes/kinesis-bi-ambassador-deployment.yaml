@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: kinesis-bi-ambassador-service
+  name: kinesis-bi-ambassador
+spec:
+  selector:
+    matchLabels:
+      app: kinesis-bi-ambassador
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: kinesis-bi-ambassador
+    spec:
+      containers:
+      - image: clblount9/kinesis-bi-ambassador
+        name: frontend
+        imagePullPolicy: Always          
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"                
+      restartPolicy: Always
