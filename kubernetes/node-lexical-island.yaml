@@ -17,14 +17,27 @@ spec:
       containers:
       - image: clblount9/node-lexical-island
         name: node-lexical-island
+        env:
+        # Define the environment variable
+        - name: REDIS_HOST # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: env-config         # The ConfigMap this value comes from.
+              key: REDIS_HOST # The key to fetch.
+        - name: REDIS_SEARCH_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: REDIS_SEARCH_HOST
         imagePullPolicy: Always          
         ports:
         - containerPort: 8082
         resources:
           requests:
             memory: "64Mi"
-            cpu: "250m"
+            cpu: "100m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"                
+            cpu: "200m"                
       restartPolicy: Always

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  AWS_BUCKET: udagrizzkle-dev
+  AWS_PROFILE: udagram
+  AWS_REGION: us-east-2
+  REDIS_HOST: redis
+  REDIS_PORT: redis
+  POSTGRESS_DB: postgress
+  POSTGRESS_HOST: database-1.cp8yjv6ddfr8.us-east-1.rds.amazonaws.com
+  URL: http://localhost:8100  
+metadata:
+  name: env-config

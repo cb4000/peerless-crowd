@@ -15,7 +15,20 @@ spec:
         app: reflexive-persistance
     spec:
       containers:
-      - image: clblount9/pink-percival
+      - image: clblount9/reflexive-persistance:latest
+        env:
+        # Define the environment variable
+        - name: REDIS_HOST # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: env-config         # The ConfigMap this value comes from.
+              key: REDIS_HOST # The key to fetch.
+        - name: REDIS_SEARCH_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: REDIS_SEARCH_HOST
         name: reflexive-persistance
         imagePullPolicy: Always          
         ports:
