@@ -24,7 +24,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: env-config         # The ConfigMap this value comes from.
-              key: REDIS_SEARCH_HOST # The key to fetch.
+              key: REDIS_HOST # The key to fetch.
         - name: REDIS_SEARCH_HOST
           valueFrom:
             configMapKeyRef:

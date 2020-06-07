@@ -5,7 +5,7 @@ data:
   AWS_PROFILE: udagram
   AWS_REGION: us-east-2
   REDIS_HOST: redis
-  REDIS_PORT: redis
+  REDIS_SEARCH_HOST: redisearch
   POSTGRESS_DB: postgress
   POSTGRESS_HOST: database-1.cp8yjv6ddfr8.us-east-1.rds.amazonaws.com
   URL: http://localhost:8100  

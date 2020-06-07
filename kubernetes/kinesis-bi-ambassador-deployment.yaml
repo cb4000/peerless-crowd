@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: kinesis-bi-ambassador
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -17,6 +17,18 @@ spec:
       containers:
       - image: clblount9/kinesis-bi-ambassador
         name: frontend
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: backend-aws
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-aws
+              key: AWS_SECRET_ACCESS_KEY
+        # Define the environment variables
         imagePullPolicy: Always          
         ports:
         - containerPort: 8080
