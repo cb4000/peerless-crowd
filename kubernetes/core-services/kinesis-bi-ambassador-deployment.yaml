@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - image: clblount9/kinesis-bi-ambassador
-        name: frontend
+        name: kinesis-bi-ambassador
         env:
         - name: AWS_ACCESS_KEY_ID
           valueFrom:

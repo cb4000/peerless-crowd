@@ -13,3 +13,10 @@ spec:
         backend:
           serviceName: my-service
           servicePort: 80
+  - http:
+      paths:
+      - path: /clavin
+        pathType: Prefix
+        backend:
+          serviceName: cliff-clavin
+          servicePort: 8080

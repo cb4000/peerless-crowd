@@ -1,0 +1,32 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: cliff-clavin
+  labels:
+    app: cliff-clavin
+spec:
+  selector:
+    matchLabels:
+      app: cliff-clavin
+      role: master
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cliff-clavin
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: cliff-clavin
+        image: clblount9/cliff-clavin
+        resources:
+          requests:
+            cpu: 100m
+            memory: 4G
+          limits:
+            memory: "5G"
+            cpu: "500m"          
+        ports:
+        - containerPort: 8080
