@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: redissearch
-        image: redis
+        image: redislabs/redisearch
         resources:
           requests:
             cpu: 100m

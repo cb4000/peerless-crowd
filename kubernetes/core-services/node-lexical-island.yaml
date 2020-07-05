@@ -17,7 +17,18 @@ spec:
       containers:
       - image: clblount9/node-lexical-island
         name: node-lexical-island
+        
         env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: backend-aws
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-aws
+              key: AWS_SECRET_ACCESS_KEY
         # Define the environment variable
         - name: REDIS_HOST # Notice that the case is different here
                                      # from the key name in the ConfigMap.

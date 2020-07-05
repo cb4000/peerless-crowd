@@ -11,6 +11,10 @@ spec:
   ports:
   - port: 6380
     targetPort: 6379
+    name: custom-port
+  - port: 6379
+    targetPort: 6379
+    name: default-redis-port
   selector:
     app: redissearch
     role: search
